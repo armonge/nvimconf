@@ -24,8 +24,9 @@ if dein#load_state($HOME . '/.nvim.dein/')
   " Sql
   call dein#add('vim-scripts/SQLUtilities')
 
-  " JSX
-  call dein#add('mxw/vim-jsx')
+  " javascript
+  call dein#add('vim-scripts/vim-javascript')
+  call dein#add('isRuslan/vim-es6')
 
   " General Programming {
   call dein#add('neomake/neomake')
@@ -42,7 +43,7 @@ if dein#load_state($HOME . '/.nvim.dein/')
   call dein#add('jiangmiao/auto-pairs')
 
   " colorscheme
-  call dein#add('frankier/neovim-colors-solarized-truecolor-only')
+  call dein#add('iCyMind/NeoSolarized')
 
   " Required:
   call dein#end()
@@ -53,10 +54,13 @@ endif
 filetype plugin indent on
 syntax enable
 
+
 " If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
 endif
+
+let g:jsx_ext_required = 0
 
 "End dein Scripts-------------------------
 syntax on
@@ -67,11 +71,7 @@ let mapleader = ','
 cmap w!! w !sudo tee > /dev/null %
 set clipboard=unnamed,unnamedplus
 set foldlevel=9
-set tabstop=2
-set expandtab
-set softtabstop=2
 set relativenumber
-set shiftwidth=2
 filetype plugin indent on   " Automatically detect file types.
 scriptencoding utf-8
 
@@ -100,11 +100,8 @@ let g:neomake_javascript_jshint_maker = {
     \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
     \ }
 let g:neomake_javascript_enabled_makers = ['eslint']
-let g:python_host_prog=$HOME . "/.pyenv/versions/2.7.13/bin/python"
-let g:python3_host_prog=$HOME . "/.pyenv/versions/3.6.0/bin/python"
-let g:ycm_server_python_interpreter=$HOME . "/.pyenv/versions/2.7.13/bin/python"
 
-vmap <silent>sf        <Plug>SQLU_Formatter<CR> 
+vmap <silent>sf        <Plug>SQLU_Formatter<CR>
 nnoremap <C-c> <silent> <C-c>
 nmap <C-c>g :YcmCompleter GoTo<CR>
 
@@ -121,7 +118,7 @@ syntax enable
 
 set termguicolors
 set background=dark
-colorscheme solarized
+colorscheme NeoSolarized
 let g:airline_theme='solarized'
 
 set backspace=indent,eol,start  " Backspace for dummies
@@ -140,14 +137,14 @@ set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 set list
-set listchars=tab:?\ ,trail:?,extends:#,nbsp:. " Highlight problematic whitespace
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
 set nowrap                      " Do not wrap long lines
 set autoindent                  " Indent at the same level of the previous line
-set shiftwidth=4                " Use indents of 4 spaces
+set shiftwidth=2                " Use indents of 4 spaces
 set expandtab                   " Tabs are spaces, not tabs
-set tabstop=4                   " An indentation every four columns
-set softtabstop=4               " Let backspace delete indent
+set tabstop=2                   " An indentation every four columns
+set softtabstop=2               " Let backspace delete indent
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
